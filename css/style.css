@@ -1,0 +1,283 @@
+/* css goes here */
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #110019;
+}
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-text-stroke */
+
+.title {
+  font-size: 54px;
+  color: transparent;
+  -webkit-text-stroke: 1px #fff; /* Width and color of stroke for the title */
+  position: relative;
+}
+
+.title-animate {
+  font-size: 54px;
+  color: #fff;
+  animation: animateTitle 4s ease-in-out infinite;
+  position: absolute;
+  top: 0;
+}
+
+#stars,
+.balloon-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* https://css-tricks.com/animating-with-clip-path/ */
+
+@keyframes animateTitle {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    clip-path: inset(0);
+  }
+}
+
+p {
+  color: #fff;
+  font-size: 24px;
+}
+
+input {
+  font-size: 24px;
+  color: #110019;
+}
+
+/*Balloons*/
+
+.balloon {
+  display: inline-block;
+  width: 120px;
+  height: 145px;
+  /* background: hsl(215, 50%, 65%); */
+  border-radius: 80%;
+  position: relative;
+  /* box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.07); */
+  margin: 20px 30px;
+  /* transition: transform 0.1s ease; */
+  z-index: 10;
+  animation: balloons 5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Animation to move the balloons upwards on 0% and out of the screen at 100% */
+
+@keyframes balloons {
+  0% {
+    transform: translateY(1000px);
+  }
+  100% {
+    transform: translateY(-600px);
+  }
+  /*   50%{ transform:translateY(-25px) rotate(4deg); } */
+}
+
+/* Balloon knot */
+
+.balloon:before {
+  content: "▲";
+  font-size: 20px;
+  color: hsl(215, 30%, 50%);
+  display: block;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: -12px;
+  z-index: -100;
+}
+
+/* Balloon string */
+
+.balloon:after {
+  display: inline-block;
+  top: 149px;
+  left: 59px;
+  position: absolute;
+  height: 250px;
+  width: 1px;
+  margin: 0 auto;
+  content: "";
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Colors and animation duration for each balloon and the balloon knot */
+
+.balloon:nth-child(1) {
+  background: hsl(73, 40%, 65%);
+  animation-duration: 2.5s;
+}
+
+.balloon:nth-child(1):before {
+  color: hsl(73, 40%, 65%);
+}
+
+.balloon:nth-child(2),
+.balloon:nth-child(6) {
+  background: hsl(245, 40%, 65%);
+  animation-duration: 3.5s;
+}
+.balloon:nth-child(2):before,
+.balloon:nth-child(6):before {
+  color: hsl(245, 40%, 65%);
+}
+
+.balloon:nth-child(3),
+.balloon:nth-child(7) {
+  background: hsl(139, 50%, 60%);
+  animation-duration: 3s;
+}
+.balloon:nth-child(3):before,
+.balloon:nth-child(7):before {
+  color: hsl(139, 30%, 50%);
+}
+
+.balloon:nth-child(4),
+.balloon:nth-child(8) {
+  background: hsl(59, 50%, 58%);
+  animation-duration: 4.5s;
+}
+.balloon:nth-child(4):before,
+.balloon:nth-child(8):before {
+  color: hsl(59, 30%, 52%);
+}
+
+.balloon:nth-child(5),
+.balloon:nth-child(9) {
+  background: hsl(23, 55%, 57%);
+  animation-duration: 5s;
+}
+.balloon:nth-child(5):before,
+.balloon:nth-child(9):before {
+  color: hsl(23, 44%, 46%);
+}
+
+/* Style for clock timer */
+
+#clockdiv {
+  color: #fff;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  font-size: 30px;
+}
+
+/* Style for each container - days, hours, minutes and hours */
+
+.daysContainer,
+.hoursContainer,
+.minutesContainer,
+.secondsContainer {
+  padding: 40px 0 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 178px;
+}
+
+#clockdiv div > span {
+  padding: 25px 30px;
+  border-radius: 50px;
+  background: #df8ccd;
+  display: inline-block;
+}
+
+#clockdiv > div:hover {
+  transform: scale(1.5);
+}
+
+.subText {
+  padding-top: 5px;
+  font-size: 16px;
+}
+
+/* Animation for the days, hours, minutes and hours */
+
+.daysContainer {
+  animation: days 8s linear;
+}
+.hoursContainer {
+  animation: hours 9s ease-out;
+}
+.minutesContainer {
+  animation: minutes 10s ease;
+}
+.secondsContainer {
+  animation: seconds 11s ease;
+}
+
+@keyframes days {
+  0% {
+    opacity: 0;
+    transform: translateX(500%);
+  }
+  20% {
+    opacity: 0.2;
+    transform: translateX(400%);
+  }
+  40% {
+    opacity: 0.4;
+    transform: translateX(300%);
+  }
+  60% {
+    opacity: 0.6;
+    transform: translateX(200%);
+  }
+  80% {
+    opacity: 0.8;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes hours {
+  0% {
+    transform: translateY(250%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes minutes {
+  0% {
+    opacity: 0;
+    transform: translateX(-500%) rotate(-120deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px) rotate(0deg);
+  }
+}
+
+@keyframes seconds {
+  0% {
+    opacity: 0;
+    transform: translateY(-250px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
